@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 95c799c63c7d5e846a65ca3db1855de4
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - ARCamera: {instanceID: 0}
+  - hitPrefab: {fileID: 1359711758493060, guid: 3b2b4d50039f82242a8fd7bd1fd4542d,
+      type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
