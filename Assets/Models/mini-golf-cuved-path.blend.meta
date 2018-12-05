@@ -3,39 +3,38 @@ guid: 8273194d5f6341347aeda80d00b94a6c
 ModelImporter:
   serializedVersion: 23
   fileIDToRecycleName:
-    100000: BezierCurve
-    100002: Circle
+    100000: Circle
+    100002: Circle_001
     100004: Cube
-    100006: Cube_001
-    100008: Cube_002
+    100006: Cube_002
+    100008: Cube_003
     100010: //RootNode
-    400000: BezierCurve
-    400002: Circle
+    400000: Circle
+    400002: Circle_001
     400004: Cube
-    400006: Cube_001
-    400008: Cube_002
+    400006: Cube_002
+    400008: Cube_003
     400010: //RootNode
-    2100000: Material_001
-    2100002: unnamed
-    2100004: Material_002
-    2300000: BezierCurve
-    2300002: Circle
+    2100000: Material_002
+    2100002: Material_001
+    2100004: unnamed
+    2300000: Circle
+    2300002: Circle_001
     2300004: Cube
-    2300006: Cube_001
-    2300008: Cube_002
-    3300000: BezierCurve
-    3300002: Circle
+    2300006: Cube_002
+    2300008: Cube_003
+    3300000: Circle
+    3300002: Circle_001
     3300004: Cube
-    3300006: Cube_001
-    3300008: Cube_002
-    4300000: Circle
-    4300002: BezierCurve
-    4300004: Cube_001
+    3300006: Cube_002
+    3300008: Cube_003
+    4300000: Cube_003
+    4300002: Circle_001
+    4300004: Circle
     4300006: Cube_002
     4300008: Cube
     7400000: Default Take
     9500000: //RootNode
-    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
