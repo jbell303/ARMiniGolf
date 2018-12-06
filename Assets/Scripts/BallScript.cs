@@ -6,11 +6,12 @@ public class BallScript : MonoBehaviour {
 
     Rigidbody rb;
     public float hitForce;
-    public Camera ARCamera;
+    Camera ARCamera;
 
 	// Use this for initialization
 	void Start () {
         rb = GetComponent<Rigidbody>();
+        ARCamera = Camera.main;
 	}
 	
 	// Update is called once per frame

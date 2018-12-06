@@ -52,7 +52,7 @@ public class ARHitTest : MonoBehaviour {
 	// Fixed Update is called once per frame
 	void FixedUpdate () {
 		if (Input.GetMouseButtonDown(0)) { //this works with touch as well as with a mouse
-            RemoveObject (Input.mousePosition); 
+            //RemoveObject (Input.mousePosition); 
 		}
     }
 
