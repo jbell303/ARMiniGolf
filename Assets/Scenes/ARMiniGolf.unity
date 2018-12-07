@@ -836,7 +836,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ARCamera: {fileID: 10}
-  hitPrefab: {fileID: 1453490785073816, guid: 226cd4b6c62519e41b7ef5b3e91a2518, type: 2}
+  hitPrefab: {fileID: 1760784992908934, guid: 226cd4b6c62519e41b7ef5b3e91a2518, type: 2}
 --- !u!4 &711857510
 Transform:
   m_ObjectHideFlags: 0
@@ -928,7 +928,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ARCamera: {fileID: 10}
-  maxForce: 2000
+  maxForce: 500
 --- !u!4 &1246951606
 Transform:
   m_ObjectHideFlags: 0
@@ -1049,8 +1049,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -216, y: 510}
-  m_SizeDelta: {x: 320, y: 60}
+  m_AnchoredPosition: {x: -156, y: 852}
+  m_SizeDelta: {x: 300, y: 60}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1398787486
 MonoBehaviour:
@@ -1126,8 +1126,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -78, y: 486}
-  m_SizeDelta: {x: 250, y: 20}
+  m_AnchoredPosition: {x: -150, y: 486}
+  m_SizeDelta: {x: 256, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1577391981
 MonoBehaviour:
