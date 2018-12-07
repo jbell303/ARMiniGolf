@@ -10,14 +10,24 @@ public class ARHitTest : MonoBehaviour {
     public Button spawnButton;
     public Button restartButton;
     public Button hitButton;
+    public Slider forceSlider;
+    public Text hitForceLabel;
+    public Text strokeCountText;
+    public Text boundsText;
 
     private List<GameObject> spawnedObjects = new List<GameObject>(); //array used to keep track of spawned objects
+    private int strokeCount;
 
-	/// <summary>
-	/// Function that is called on 
-	/// NOTE: HIT TESTS DON'T WORK IN ARKIT REMOTE
-	/// </summary>
-	public void SpawnHitObject() {
+    private void Start()
+    {
+        RestartGame();
+    }
+
+    /// <summary>
+    /// Function that is called on 
+    /// NOTE: HIT TESTS DON'T WORK IN ARKIT REMOTE
+    /// </summary>
+    public void SpawnHitObject() {
 		ARPoint point = new ARPoint { 
 			x = 0.5f, //do a hit test at the center of the screen
 			y = 0.5f
@@ -47,13 +57,25 @@ public class ARHitTest : MonoBehaviour {
 
                 // add hat to the list of spawned objects, instantiate a new hat
                 spawnedObjects.Add(Instantiate(hitPrefab, position, rotation));
-                spawnButton.enabled = false;
-                hitButton.enabled = true;
+                spawnButton.gameObject.SetActive(false);
+                hitButton.gameObject.SetActive(true);
+                forceSlider.gameObject.SetActive(true);
+                hitForceLabel.gameObject.SetActive(true);
                 return true;
 			}
 		}
 		return false;
 	}
+    
+    // Testing only
+    public void SpawnStatic()
+    {
+        spawnedObjects.Add(Instantiate(hitPrefab, new Vector3(0, 0, 0), Quaternion.identity));
+        spawnButton.gameObject.SetActive(false);
+        hitButton.gameObject.SetActive(true);
+        forceSlider.gameObject.SetActive(true);
+        hitForceLabel.gameObject.SetActive(true);
+    }
 
 	// Fixed Update is called once per frame
 	void FixedUpdate () {
@@ -62,28 +84,51 @@ public class ARHitTest : MonoBehaviour {
 		}
     }
 
-    private void OnTriggerExit(Collider other)
+    public void AddStrokes()
     {
-        if (other.gameObject.tag == "ball")
+        strokeCount += 1;
+        strokeCountText.text = "Strokes: " + strokeCount;
+    }
+
+    public void EndGame()
+    {
+        restartButton.gameObject.SetActive(true);
+        hitButton.gameObject.SetActive(false);
+        forceSlider.gameObject.SetActive(false);
+        hitForceLabel.gameObject.SetActive(false);
+
+    }
+
+    public void RemoveCourse()
+    {
+        GameObject course = spawnedObjects[0];
+        if (spawnedObjects.Remove(course))
         {
-            Debug.Log("ball exited play area...");
-            restartButton.enabled = true;
+            Destroy(course);
         }
     }
 
-    public void removeCourse()
+    public void SetOutOfBounds()
     {
-        if (spawnedObjects.Remove(spawnedObjects[0]))
-        {
-            Destroy(spawnedObjects[0]);
-        }
+        boundsText.gameObject.SetActive(true);
+        EndGame();
     }
 
-    public void ResetGame()
+    public void RestartGame()
     {
-        removeCourse();
-        spawnButton.enabled = true;
-        restartButton.enabled = false;
+        if (spawnedObjects.Count != 0)
+        {
+            RemoveCourse();
+        }
+        boundsText.gameObject.SetActive(false);
+        strokeCount = 0;
+        strokeCountText.text = "";
+        spawnButton.gameObject.SetActive(true);
+        restartButton.gameObject.SetActive(false);
+        hitButton.gameObject.SetActive(false);
+        forceSlider.value = 0;
+        forceSlider.gameObject.SetActive(false);
+        hitForceLabel.gameObject.SetActive(false);
     }
 
     public void RemoveObject(Vector2 point) {

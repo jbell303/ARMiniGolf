@@ -148,6 +148,7 @@ GameObject:
   - component: {fileID: 4362499760975232}
   - component: {fileID: 95424408892505318}
   - component: {fileID: 65465834671454316}
+  - component: {fileID: 114573957775820826}
   m_Layer: 0
   m_Name: mini-golf-cuved-path
   m_TagString: Untagged
@@ -690,6 +691,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114573957775820826
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1904448631385480}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c11221241d2ef34e904ce9f57da24ad, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!135 &135115703603075964
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -6,6 +6,9 @@ TagManager:
   tags:
   - slider
   - ball
+  - restart
+  - gameManager
+  - strokeCount
   layers:
   - Default
   - TransparentFX
