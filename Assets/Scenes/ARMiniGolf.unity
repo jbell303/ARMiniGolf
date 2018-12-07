@@ -915,7 +915,7 @@ MonoBehaviour:
   hitPrefab: {fileID: 1904448631385480, guid: 226cd4b6c62519e41b7ef5b3e91a2518, type: 2}
   spawnButton: {fileID: 575800629}
   restartButton: {fileID: 1224726307}
-  hitButton: {fileID: 0}
+  hitButton: {fileID: 1610422141}
 --- !u!4 &711857510
 Transform:
   m_ObjectHideFlags: 0
@@ -996,7 +996,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1224726307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1458,7 +1458,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1610422140
 RectTransform:
   m_ObjectHideFlags: 0
