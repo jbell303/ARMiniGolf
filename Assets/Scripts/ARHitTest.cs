@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.iOS;
+using UnityEngine.UI;
 
 public class ARHitTest : MonoBehaviour {
 	public Camera ARCamera; //the Virtual Camera used for AR
 	public GameObject hitPrefab; //prefab we place on a hit test
+    public Button spawnButton;
+    public Button restartButton;
+    public Button hitButton;
 
     private List<GameObject> spawnedObjects = new List<GameObject>(); //array used to keep track of spawned objects
 
@@ -43,6 +47,8 @@ public class ARHitTest : MonoBehaviour {
 
                 // add hat to the list of spawned objects, instantiate a new hat
                 spawnedObjects.Add(Instantiate(hitPrefab, position, rotation));
+                spawnButton.enabled = false;
+                hitButton.enabled = true;
                 return true;
 			}
 		}
@@ -56,7 +62,31 @@ public class ARHitTest : MonoBehaviour {
 		}
     }
 
-	public void RemoveObject(Vector2 point) {
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "ball")
+        {
+            Debug.Log("ball exited play area...");
+            restartButton.enabled = true;
+        }
+    }
+
+    public void removeCourse()
+    {
+        if (spawnedObjects.Remove(spawnedObjects[0]))
+        {
+            Destroy(spawnedObjects[0]);
+        }
+    }
+
+    public void ResetGame()
+    {
+        removeCourse();
+        spawnButton.enabled = true;
+        restartButton.enabled = false;
+    }
+
+    public void RemoveObject(Vector2 point) {
 		RaycastHit hit;
 		if (Physics.Raycast (ARCamera.ScreenPointToRay (point), out hit)) {
 			GameObject item = hit.collider.transform.parent.gameObject;
