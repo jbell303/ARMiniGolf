@@ -14,6 +14,7 @@ public class ARHitTest : MonoBehaviour {
     public Text hitForceLabel;
     public Text strokeCountText;
     public Text boundsText;
+    public Text winText;
 
     private List<GameObject> spawnedObjects = new List<GameObject>(); //array used to keep track of spawned objects
     private int strokeCount;
@@ -57,10 +58,7 @@ public class ARHitTest : MonoBehaviour {
 
                 // add hat to the list of spawned objects, instantiate a new hat
                 spawnedObjects.Add(Instantiate(hitPrefab, position, rotation));
-                spawnButton.gameObject.SetActive(false);
-                hitButton.gameObject.SetActive(true);
-                forceSlider.gameObject.SetActive(true);
-                hitForceLabel.gameObject.SetActive(true);
+                StartGame();
                 return true;
 			}
 		}
@@ -71,10 +69,7 @@ public class ARHitTest : MonoBehaviour {
     public void SpawnStatic()
     {
         spawnedObjects.Add(Instantiate(hitPrefab, new Vector3(0, 0, 0), Quaternion.identity));
-        spawnButton.gameObject.SetActive(false);
-        hitButton.gameObject.SetActive(true);
-        forceSlider.gameObject.SetActive(true);
-        hitForceLabel.gameObject.SetActive(true);
+        StartGame();
     }
 
 	// Fixed Update is called once per frame
@@ -84,10 +79,24 @@ public class ARHitTest : MonoBehaviour {
 		}
     }
 
+    void StartGame()
+    {
+        spawnButton.gameObject.SetActive(false);
+        hitButton.gameObject.SetActive(true);
+        forceSlider.gameObject.SetActive(true);
+        hitForceLabel.gameObject.SetActive(true);
+    }
+
     public void AddStrokes()
     {
         strokeCount += 1;
         strokeCountText.text = "Strokes: " + strokeCount;
+    }
+
+    public void WinGame()
+    {
+        winText.gameObject.SetActive(true);
+        EndGame();
     }
 
     public void EndGame()
@@ -120,6 +129,7 @@ public class ARHitTest : MonoBehaviour {
         {
             RemoveCourse();
         }
+        winText.gameObject.SetActive(false);
         boundsText.gameObject.SetActive(false);
         strokeCount = 0;
         strokeCountText.text = "";
