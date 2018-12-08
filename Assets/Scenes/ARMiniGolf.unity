@@ -827,7 +827,7 @@ GameObject:
   - component: {fileID: 481742513}
   m_Layer: 0
   m_Name: PointCloudParticleExample
-  m_TagString: Untagged
+  m_TagString: pointCloud
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1198,6 +1198,7 @@ MonoBehaviour:
   strokeCountText: {fileID: 587482831}
   boundsText: {fileID: 829562509}
   winText: {fileID: 1810148472}
+  pointCloud: {fileID: 481742511}
 --- !u!4 &711857510
 Transform:
   m_ObjectHideFlags: 0

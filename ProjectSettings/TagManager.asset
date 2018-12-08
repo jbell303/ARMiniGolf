@@ -9,6 +9,7 @@ TagManager:
   - restart
   - gameManager
   - strokeCount
+  - pointCloud
   layers:
   - Default
   - TransparentFX
