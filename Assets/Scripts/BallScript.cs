@@ -13,45 +13,42 @@ public class BallScript : MonoBehaviour {
     GameObject chevrons;
     public float aimDisplayThreshold;
 
+    public void Awake()
+    {
+    	ball = GameObject.FindGameObjectWithTag("ball");
+    	chevrons = GameObject.FindGameObjectWithTag("chevrons");
+    	ARCamera = Camera.main;
+    }
+
     public void Update()
     {
-        if (ball = GameObject.FindGameObjectWithTag("ball"))
-        {
-            // move aiming chevrons with camera
-            if(chevrons == null)
-            {
-                chevrons = GameObject.FindGameObjectWithTag("chevrons");
-            }
-            chevrons.transform.eulerAngles = new Vector3(-90, 0, ARCamera.transform.eulerAngles.y - 180);
-
-            
-        }
-
+        // move the aiming chevrons with the ball
+        chevrons.transform.eulerAngles = new Vector3(-90, 0, ARCamera.transform.eulerAngles.y - 180);   
     }
 
     public void FixedUpdate()
-    {
-        if (ball = GameObject.FindGameObjectWithTag("ball"))
+    { 
+        // track the velocity of the ball
+        Vector3 velocity = ball.GetComponent<Rigidbody>().velocity;
+        if (velocity.x > 0 || velocity.y > 0 || velocity.z > 0)
         {
-            // track the velocity of the ball
-            Vector3 velocity = ball.GetComponent<Rigidbody>().velocity;
-            if (velocity.x > 0 || velocity.y > 0 || velocity.z > 0)
-            {
-                Debug.Log("Ball velocity: " + velocity);
-            }
-            if (Mathf.Abs(velocity.x) <= aimDisplayThreshold && Mathf.Abs(velocity.z) <= aimDisplayThreshold)
-            {
-                chevrons.gameObject.SetActive(true);
-            } 
-            else
-            {
-                chevrons.gameObject.SetActive(false);
-            }
+        	Debug.Log("Ball velocity: " + velocity);
         }
+            
+        // show or hide the chevrons based on the velocity of the ball
+        if (Mathf.Abs(velocity.x) <= aimDisplayThreshold && Mathf.Abs(velocity.z) <= aimDisplayThreshold)
+        {
+            chevrons.gameObject.SetActive(true);
+        } 
+        else
+        {
+            chevrons.gameObject.SetActive(false);
+        }         
     }
 
     public void HitBall ()
     {
+    	ARCamera = Camera.main;
         slider = Object.FindObjectOfType<Slider>();
         ball = GameObject.FindGameObjectWithTag("ball");
         chevrons = GameObject.FindGameObjectWithTag("chevrons");
