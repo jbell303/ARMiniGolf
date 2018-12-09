@@ -10,10 +10,16 @@ public class BallScript : MonoBehaviour {
     float hitForce;
     Slider slider;
     public int maxForce;
+    GameObject chevrons;
 
-    private void Start()
+    public void Update()
     {
-        // start
+        if (ball = GameObject.FindGameObjectWithTag("ball"))
+        {
+            chevrons = GameObject.FindGameObjectWithTag("chevrons");
+            chevrons.transform.eulerAngles = new Vector3(-90, 0, ARCamera.transform.eulerAngles.y - 180);
+        }
+
     }
     public void HitBall ()
     {

@@ -10,6 +10,7 @@ TagManager:
   - gameManager
   - strokeCount
   - pointCloud
+  - chevrons
   layers:
   - Default
   - TransparentFX
