@@ -1189,7 +1189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ARCamera: {fileID: 10}
-  hitPrefab: {fileID: 1867303652393318, guid: 226cd4b6c62519e41b7ef5b3e91a2518, type: 2}
+  hitPrefab: {fileID: 1987017240882082, guid: 226cd4b6c62519e41b7ef5b3e91a2518, type: 2}
   spawnButton: {fileID: 575800629}
   restartButton: {fileID: 1224726307}
   hitButton: {fileID: 1610422141}
@@ -1487,7 +1487,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ARCamera: {fileID: 10}
-  maxForce: 500
+  maxForce: 1000
+  aimDisplayThreshold: 0.1
 --- !u!4 &1246951606
 Transform:
   m_ObjectHideFlags: 0
