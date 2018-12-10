@@ -12,12 +12,21 @@ public class BallScript : MonoBehaviour {
     public int maxForce;
     GameObject chevrons;
     public float aimDisplayThreshold;
+    Vector3 velocity;
 
-    public void Awake()
+    public void OnEnable()
     {
-    	ball = GameObject.FindGameObjectWithTag("ball");
-    	chevrons = GameObject.FindGameObjectWithTag("chevrons");
-    	ARCamera = Camera.main;
+        ball = GameObject.FindGameObjectWithTag("ball");
+        if (ball.GetComponent<Rigidbody>())
+        {
+            velocity = ball.GetComponent<Rigidbody>().velocity;
+        }
+        else
+        {
+            Debug.Log("No Rigidbody attached to ball: ");
+        }
+        chevrons = GameObject.FindGameObjectWithTag("chevrons");
+        ARCamera = Camera.main;
     }
 
     public void Update()
@@ -29,7 +38,6 @@ public class BallScript : MonoBehaviour {
     public void FixedUpdate()
     { 
         // track the velocity of the ball
-        Vector3 velocity = ball.GetComponent<Rigidbody>().velocity;
         if (velocity.x > 0 || velocity.y > 0 || velocity.z > 0)
         {
         	Debug.Log("Ball velocity: " + velocity);

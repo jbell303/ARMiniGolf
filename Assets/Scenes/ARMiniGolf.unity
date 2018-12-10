@@ -531,7 +531,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &208537687
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1189,7 +1189,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ARCamera: {fileID: 10}
-  hitPrefab: {fileID: 1171713414869122, guid: d5d5e279d37904672817bfffa25fb8ea, type: 2}
+  hitPrefab: {fileID: 1611023431735128, guid: f5ec190d01ebe0b4aaf2680d4d071adf, type: 2}
   spawnButton: {fileID: 575800629}
   restartButton: {fileID: 1224726307}
   hitButton: {fileID: 1610422141}
@@ -1832,7 +1832,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 114879015713309916, guid: d5d5e279d37904672817bfffa25fb8ea,
+      - m_Target: {fileID: 114458643695281712, guid: f5ec190d01ebe0b4aaf2680d4d071adf,
           type: 2}
         m_MethodName: HitBall
         m_Mode: 1
