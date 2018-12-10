@@ -14,6 +14,14 @@ public class BallScript : MonoBehaviour {
     public float aimDisplayThreshold;
     Vector3 velocity;
 
+    // touch input
+    public Vector2 startPos;
+    public Vector2 direction;
+
+    public Text m_Text;
+    string message;
+
+
     public void OnEnable()
     {
         ball = GameObject.FindGameObjectWithTag("ball");
@@ -32,7 +40,37 @@ public class BallScript : MonoBehaviour {
     public void Update()
     {
         // move the aiming chevrons with the ball
-        chevrons.transform.eulerAngles = new Vector3(-90, 0, ARCamera.transform.eulerAngles.y - 180);   
+        chevrons.transform.eulerAngles = new Vector3(-90, 0, ARCamera.transform.eulerAngles.y - 180);
+
+        // track touch input
+        m_Text.text = "Touch: " + message + " in direction" + direction;
+
+        // track a single touch as a direction control
+        if (Input.touchCount > 0)
+        {
+            Touch touch = Input.GetTouch(0);
+
+            // handle finger movements based on touch phase
+            switch (touch.phase)
+            {
+                case TouchPhase.Began:
+                    // record initial touch position
+                    startPos = touch.position;
+                    message = "Begun ";
+                    break;
+
+                case TouchPhase.Moved:
+                    // determine direction by comparing position to startPos
+                    direction = touch.position - startPos;
+                    message = "Moving ";
+                    break;
+
+                case TouchPhase.Ended:
+                    // report that the touch has ended
+                    message = "Ending ";
+                    break;
+            }
+        }
     }
 
     public void FixedUpdate()
