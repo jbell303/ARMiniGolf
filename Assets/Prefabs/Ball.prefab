@@ -42,7 +42,7 @@ GameObject:
   - component: {fileID: 54242667652847982}
   - component: {fileID: 114213385431618152}
   m_Layer: 0
-  m_Name: ball
+  m_Name: Ball
   m_TagString: ball
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -217,6 +217,9 @@ MonoBehaviour:
   ARCamera: {fileID: 0}
   maxForce: 1000
   aimDisplayThreshold: 0.1
+  startPos: {x: 0, y: 0}
+  direction: {x: 0, y: 0}
+  m_Text: {fileID: 0}
 --- !u!135 &135254556942763140
 SphereCollider:
   m_ObjectHideFlags: 1

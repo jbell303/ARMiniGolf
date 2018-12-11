@@ -307,7 +307,7 @@ Transform:
   m_GameObject: {fileID: 1611023431735128}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 0.3}
+  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 4802619147257694}
   - {fileID: 4931624938329496}
@@ -850,6 +850,9 @@ MonoBehaviour:
   ARCamera: {fileID: 0}
   maxForce: 1000
   aimDisplayThreshold: 0.1
+  startPos: {x: 0, y: 0}
+  direction: {x: 0, y: 0}
+  m_Text: {fileID: 0}
 --- !u!114 &114529477392960536
 MonoBehaviour:
   m_ObjectHideFlags: 1

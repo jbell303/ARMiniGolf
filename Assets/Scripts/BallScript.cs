@@ -18,7 +18,7 @@ public class BallScript : MonoBehaviour {
     public Vector2 startPos;
     public Vector2 direction;
 
-    public Text m_Text;
+    Text m_Text;
     string message;
 
 
@@ -35,6 +35,7 @@ public class BallScript : MonoBehaviour {
         }
         chevrons = GameObject.FindGameObjectWithTag("chevrons");
         ARCamera = Camera.main;
+        m_Text = GameObject.FindGameObjectWithTag("touch").GetComponent<Text>();
     }
 
     public void Update()
