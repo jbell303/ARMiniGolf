@@ -1659,7 +1659,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Touch in direction
+  m_Text: 
 --- !u!222 &1568175660
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -69,6 +69,7 @@ public class BallScript : MonoBehaviour {
                 case TouchPhase.Ended:
                     // report that the touch has ended
                     message = "Ending ";
+                    HitBall();
                     break;
             }
         }
@@ -103,7 +104,8 @@ public class BallScript : MonoBehaviour {
         //Debug.Log("hitForce: " + hitForce);
         Vector3 hitAngle = ARCamera.transform.forward;
         //Debug.Log("hitAngle: "+ hitAngle);
-        Vector3 force = hitAngle * hitForce * maxForce;
+        //Vector3 force = hitAngle * hitForce * maxForce;
+        Vector3 force = hitAngle * direction.y;
         //Debug.Log("ball: " + ball);
         ball.GetComponent<Rigidbody>().AddForce(force);
         Debug.Log("Force: " + force);
