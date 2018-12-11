@@ -29,18 +29,18 @@ public class ARHitTest : MonoBehaviour {
 
     private void OnGUI()
     {
-        IEnumerable<ARPlaneAnchorGameObject> arpags = unityARAnchorManager.GetCurrentPlaneAnchors();
+        LinkedList<ARPlaneAnchorGameObject> arpags = unityARAnchorManager.GetCurrentPlaneAnchors();
         if (spawnedObjects.Count == 0)
         {
-            if (arpags == null)
-            {
-                helpText.text = "Move your phone to a flat, well lit surface.";
-                spawnButton.gameObject.SetActive(false);
-            }
-            else
+            if (arpags.Count > 0)
             {
                 helpText.text = "";
                 spawnButton.gameObject.SetActive(true);
+            }
+            else
+            {
+                helpText.text = "Move your phone to a flat, well lit surface.";
+                spawnButton.gameObject.SetActive(false);
             }
         }
 
