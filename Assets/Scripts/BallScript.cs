@@ -96,16 +96,20 @@ public class BallScript : MonoBehaviour {
 
     public void HitBall ()
     {
-    	ARCamera = Camera.main;
-        slider = Object.FindObjectOfType<Slider>();
-        ball = GameObject.FindGameObjectWithTag("ball");
-        chevrons = GameObject.FindGameObjectWithTag("chevrons");
-        hitForce = slider.value;
-        //Debug.Log("hitForce: " + hitForce);
+        // define the game objects
+        //ARCamera = Camera.main;
+        //slider = Object.FindObjectOfType<Slider>();
+        //ball = GameObject.FindGameObjectWithTag("ball");
+        //chevrons = GameObject.FindGameObjectWithTag("chevrons");
+
         Vector3 hitAngle = ARCamera.transform.forward;
         //Debug.Log("hitAngle: "+ hitAngle);
-        //Vector3 force = hitAngle * hitForce * maxForce;
-        Vector3 force = hitAngle * direction.y;
+
+        //hitForce = slider.value;
+        hitForce = direction.y / Screen.height;
+        //Debug.Log("hitForce: " + hitForce);
+
+        Vector3 force = hitAngle * hitForce * maxForce;
         //Debug.Log("ball: " + ball);
         ball.GetComponent<Rigidbody>().AddForce(force);
         Debug.Log("Force: " + force);
