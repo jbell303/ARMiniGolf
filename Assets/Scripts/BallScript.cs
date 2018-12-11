@@ -8,7 +8,7 @@ public class BallScript : MonoBehaviour {
     GameObject ball;
     public Camera ARCamera;
     float hitForce;
-    Slider slider;
+    //Slider slider;
     public int maxForce;
     GameObject chevrons;
     public float aimDisplayThreshold;
@@ -58,6 +58,7 @@ public class BallScript : MonoBehaviour {
                     // record initial touch position
                     startPos = touch.position;
                     message = "Begun ";
+                    chevrons.gameObject.SetActive(true);
                     break;
 
                 case TouchPhase.Moved:
@@ -69,6 +70,7 @@ public class BallScript : MonoBehaviour {
                 case TouchPhase.Ended:
                     // report that the touch has ended
                     message = "Ending ";
+                    chevrons.gameObject.SetActive(false);
                     HitBall();
                     break;
             }
@@ -84,14 +86,14 @@ public class BallScript : MonoBehaviour {
         }
             
         // show or hide the chevrons based on the velocity of the ball
-        if (Mathf.Abs(velocity.x) <= aimDisplayThreshold && Mathf.Abs(velocity.z) <= aimDisplayThreshold)
-        {
-            chevrons.gameObject.SetActive(true);
-        } 
-        else
-        {
-            chevrons.gameObject.SetActive(false);
-        }         
+        //if (Mathf.Abs(velocity.x) <= aimDisplayThreshold && Mathf.Abs(velocity.z) <= aimDisplayThreshold)
+        //{
+        //    chevrons.gameObject.SetActive(true);
+        //} 
+        //else
+        //{
+        //    chevrons.gameObject.SetActive(false);
+        //}         
     }
 
     public void HitBall ()

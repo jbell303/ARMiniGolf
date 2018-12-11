@@ -82,9 +82,9 @@ public class ARHitTest : MonoBehaviour {
     void StartGame()
     {
         spawnButton.gameObject.SetActive(false);
-        hitButton.gameObject.SetActive(true);
-        forceSlider.gameObject.SetActive(true);
-        hitForceLabel.gameObject.SetActive(true);
+        //hitButton.gameObject.SetActive(true);
+        //forceSlider.gameObject.SetActive(true);
+        //hitForceLabel.gameObject.SetActive(true);
     }
 
     public void AddStrokes()
@@ -102,9 +102,9 @@ public class ARHitTest : MonoBehaviour {
     public void EndGame()
     {
         restartButton.gameObject.SetActive(true);
-        hitButton.gameObject.SetActive(false);
-        forceSlider.gameObject.SetActive(false);
-        hitForceLabel.gameObject.SetActive(false);
+        //hitButton.gameObject.SetActive(false);
+        //forceSlider.gameObject.SetActive(false);
+        //hitForceLabel.gameObject.SetActive(false);
 
     }
 
@@ -135,10 +135,10 @@ public class ARHitTest : MonoBehaviour {
         strokeCountText.text = "";
         spawnButton.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(false);
-        hitButton.gameObject.SetActive(false);
-        forceSlider.value = 0;
-        forceSlider.gameObject.SetActive(false);
-        hitForceLabel.gameObject.SetActive(false);
+        //hitButton.gameObject.SetActive(false);
+        //forceSlider.value = 0;
+        //forceSlider.gameObject.SetActive(false);
+        //hitForceLabel.gameObject.SetActive(false);
     }
 
     public void RemoveObject(Vector2 point) {
