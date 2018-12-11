@@ -15,6 +15,7 @@ public class BallScript : MonoBehaviour {
     Vector3 velocity;
     Text helpText;
     bool helpPlayer;
+    string helpPhase;
 
     // touch input
     public Vector2 startPos;
@@ -40,23 +41,11 @@ public class BallScript : MonoBehaviour {
         m_Text = GameObject.FindGameObjectWithTag("touch").GetComponent<Text>();
         helpText = GameObject.FindGameObjectWithTag("help").GetComponent<Text>();
         helpPlayer = true;
+        helpPhase = "aim";
     }
 
     public void Update()
     {
-        if (helpPlayer)
-        {
-            Vector3 difference = ball.transform.position - ARCamera.transform.position;
-            if (difference.x < 0)
-            {
-                helpText.text = "Stand behind the ball...";
-            }
-            else
-            {
-                helpText.text = "Tap and hold to begin the swing...";
-            }
-        }
-        
         // move the aiming chevrons with the ball
         chevrons.transform.eulerAngles = new Vector3(-90, 0, ARCamera.transform.eulerAngles.y - 180);
 
@@ -75,6 +64,7 @@ public class BallScript : MonoBehaviour {
                     // record initial touch position
                     startPos = touch.position;
                     message = "Begun ";
+                    helpText.text = "";
                     chevrons.gameObject.SetActive(true);
                     break;
 
@@ -83,6 +73,7 @@ public class BallScript : MonoBehaviour {
                     direction = touch.position - startPos;
                     message = "Moving ";
                     helpText.text = "Drag your finger up to set the swing power. \n Release to hit the ball...";
+                    helpPhase = "release";
                     break;
 
                 case TouchPhase.Ended:
@@ -93,6 +84,25 @@ public class BallScript : MonoBehaviour {
                     helpText.text = "";
                     helpPlayer = false;
                     break;
+            }
+        }
+
+        if (helpPlayer)
+        {
+            switch (helpPhase) {
+            	case "aim":
+            		Vector3 difference = ball.transform.position - ARCamera.transform.position;
+            		if (difference.x < 0)
+            		{
+                		helpText.text = "Stand behind the ball...";
+            		} else {
+            			helpPhase = "swing";
+            		}
+            		break;
+            	
+            	case "swing":
+            		helpText.text = "Tap and hold to begin the swing...";
+            		break;
             }
         }
     }
