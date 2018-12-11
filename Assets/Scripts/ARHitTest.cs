@@ -15,13 +15,35 @@ public class ARHitTest : MonoBehaviour {
     public Text strokeCountText;
     public Text boundsText;
     public Text winText;
+    public Text helpText;
 
+    private UnityARAnchorManager unityARAnchorManager;
     private List<GameObject> spawnedObjects = new List<GameObject>(); //array used to keep track of spawned objects
     private int strokeCount;
 
     private void Start()
     {
+        unityARAnchorManager = new UnityARAnchorManager();
         RestartGame();
+    }
+
+    private void OnGUI()
+    {
+        IEnumerable<ARPlaneAnchorGameObject> arpags = unityARAnchorManager.GetCurrentPlaneAnchors();
+        if (spawnedObjects.Count == 0)
+        {
+            if (arpags == null)
+            {
+                helpText.text = "Move your phone to a flat, well lit surface.";
+                spawnButton.gameObject.SetActive(false);
+            }
+            else
+            {
+                helpText.text = "";
+                spawnButton.gameObject.SetActive(true);
+            }
+        }
+
     }
 
     /// <summary>
