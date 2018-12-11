@@ -14,6 +14,7 @@ public class BallScript : MonoBehaviour {
     public float aimDisplayThreshold;
     Vector3 velocity;
     Text helpText;
+    bool helpPlayer;
 
     // touch input
     public Vector2 startPos;
@@ -38,11 +39,24 @@ public class BallScript : MonoBehaviour {
         ARCamera = Camera.main;
         m_Text = GameObject.FindGameObjectWithTag("touch").GetComponent<Text>();
         helpText = GameObject.FindGameObjectWithTag("help").GetComponent<Text>();
+        helpPlayer = true;
     }
 
     public void Update()
     {
-        HelpPlayer();
+        if (helpPlayer)
+        {
+            Vector3 difference = ball.transform.position - ARCamera.transform.position;
+            if (difference.x < 0)
+            {
+                helpText.text = "Stand behind the ball...";
+            }
+            else
+            {
+                helpText.text = "Tap and hold to begin the swing...";
+            }
+        }
+        
         // move the aiming chevrons with the ball
         chevrons.transform.eulerAngles = new Vector3(-90, 0, ARCamera.transform.eulerAngles.y - 180);
 
@@ -68,6 +82,7 @@ public class BallScript : MonoBehaviour {
                     // determine direction by comparing position to startPos
                     direction = touch.position - startPos;
                     message = "Moving ";
+                    helpText.text = "Drag your finger up to set the swing power. \n Release to hit the ball...";
                     break;
 
                 case TouchPhase.Ended:
@@ -75,6 +90,8 @@ public class BallScript : MonoBehaviour {
                     message = "Ending ";
                     chevrons.gameObject.SetActive(false);
                     HitBall();
+                    helpText.text = "";
+                    helpPlayer = false;
                     break;
             }
         }
@@ -123,6 +140,6 @@ public class BallScript : MonoBehaviour {
 
     void HelpPlayer()
     {
-        helpText.text = "Stand behind the ball: " + (ball.transform.position - ARCamera.transform.position);
+        
     }
 }
