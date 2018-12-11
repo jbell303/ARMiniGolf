@@ -13,6 +13,7 @@ public class BallScript : MonoBehaviour {
     GameObject chevrons;
     public float aimDisplayThreshold;
     Vector3 velocity;
+    Text helpText;
 
     // touch input
     public Vector2 startPos;
@@ -36,10 +37,12 @@ public class BallScript : MonoBehaviour {
         chevrons = GameObject.FindGameObjectWithTag("chevrons");
         ARCamera = Camera.main;
         m_Text = GameObject.FindGameObjectWithTag("touch").GetComponent<Text>();
+        helpText = GameObject.FindGameObjectWithTag("help").GetComponent<Text>();
     }
 
     public void Update()
     {
+        HelpPlayer();
         // move the aiming chevrons with the ball
         chevrons.transform.eulerAngles = new Vector3(-90, 0, ARCamera.transform.eulerAngles.y - 180);
 
@@ -116,5 +119,10 @@ public class BallScript : MonoBehaviour {
         ball.GetComponent<Rigidbody>().AddForce(force);
         Debug.Log("Force: " + force);
         GameObject.FindGameObjectWithTag("gameManager").GetComponent<ARHitTest>().AddStrokes();
+    }
+
+    void HelpPlayer()
+    {
+        helpText.text = "Stand behind the ball: " + (ball.transform.position - ARCamera.transform.position);
     }
 }

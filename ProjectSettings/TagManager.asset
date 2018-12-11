@@ -12,6 +12,7 @@ TagManager:
   - pointCloud
   - chevrons
   - touch
+  - help
   layers:
   - Default
   - TransparentFX
