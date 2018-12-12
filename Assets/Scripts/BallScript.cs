@@ -16,6 +16,7 @@ public class BallScript : MonoBehaviour {
     Text helpText;
     bool helpPlayer;
     string helpPhase;
+    Text hitPowerText;
 
     // touch input
     public Vector2 startPos;
@@ -40,6 +41,7 @@ public class BallScript : MonoBehaviour {
         ARCamera = Camera.main;
         m_Text = GameObject.FindGameObjectWithTag("touch").GetComponent<Text>();
         helpText = GameObject.FindGameObjectWithTag("help").GetComponent<Text>();
+        hitPowerText = GameObject.FindGameObjectWithTag("hitPower").GetComponent<Text>();
         helpPlayer = true;
         helpPhase = "aim";
     }
@@ -50,7 +52,7 @@ public class BallScript : MonoBehaviour {
         chevrons.transform.eulerAngles = new Vector3(-90, 0, ARCamera.transform.eulerAngles.y - 180);
 
         // track touch input
-        m_Text.text = "Touch: " + message + " in direction" + direction;
+        //m_Text.text = "Touch: " + message + " in direction" + direction;
 
         // track a single touch as a direction control
         if (Input.touchCount > 0)
@@ -71,6 +73,7 @@ public class BallScript : MonoBehaviour {
                 case TouchPhase.Moved:
                     // determine direction by comparing position to startPos
                     direction = touch.position - startPos;
+                    hitPowerText.text = "Hit Power: " + direction.y / Screen.height;
                     message = "Moving ";
                     helpText.text = "Drag your finger up to set the swing power. \n Release to hit the ball...";
                     helpPhase = "release";
@@ -82,6 +85,7 @@ public class BallScript : MonoBehaviour {
                     chevrons.gameObject.SetActive(false);
                     HitBall();
                     helpText.text = "";
+                    hitPowerText.text = "";
                     helpPlayer = false;
                     break;
             }
