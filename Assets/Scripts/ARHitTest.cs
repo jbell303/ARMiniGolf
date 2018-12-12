@@ -105,7 +105,7 @@ public class ARHitTest : MonoBehaviour {
 
     public void WinGame()
     {
-        restartButton.gameObject.GetComponent<Text>().text = "Play Again";
+        restartButton.gameObject.GetComponentInChildren<Text>().text = "Play Again";
         winText.gameObject.SetActive(true);
         EndGame();
     }
@@ -126,7 +126,7 @@ public class ARHitTest : MonoBehaviour {
 
     public void SetOutOfBounds()
     {
-        restartButton.gameObject.GetComponent<Text>().text = "Restart";
+        restartButton.gameObject.GetComponentInChildren<Text>().text = "Restart";
         boundsText.gameObject.SetActive(true);
         EndGame();
     }
