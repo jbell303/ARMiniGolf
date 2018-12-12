@@ -107,7 +107,8 @@ public class BallScript : MonoBehaviour {
     public void HitBall ()
     {
         // define the hit angle based on where the camera is pointing
-        Vector3 hitAngle = ARCamera.transform.forward;
+        //Vector3 hitAngle = ARCamera.transform.forward;
+        Vector3 hitAngle = new Vector3(0, ARCamera.transform.eulerAngles.y - 180, 0);
 
         // define the force of the hit based on touch position
         float hitForce = direction.y / Screen.height;
