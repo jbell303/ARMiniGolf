@@ -52,7 +52,7 @@ public class BallScript : MonoBehaviour {
         chevrons.transform.eulerAngles = new Vector3(-90, 0, ARCamera.transform.eulerAngles.y - 180);
 
         // track touch input
-        //m_Text.text = "Touch: " + message + " in direction" + direction;
+        m_Text.text = "Touch: " + message + " in direction" + direction;
 
         // track a single touch as a direction control
         if (Input.touchCount > 0)
@@ -73,7 +73,8 @@ public class BallScript : MonoBehaviour {
                 case TouchPhase.Moved:
                     // determine direction by comparing position to startPos
                     direction = touch.position - startPos;
-                    hitPowerText.text = "Hit Power: " + direction.y / Screen.height;
+                    hitPowerText.text = "Hit Power: " + (direction.y / Screen.height);
+                    Debug.Log("Hit Power: " + (direction.y / Screen.height));
                     message = "Moving ";
                     helpText.text = "Drag your finger up to set the swing power. \n Release to hit the ball...";
                     helpPhase = "release";
