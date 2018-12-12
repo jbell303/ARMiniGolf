@@ -9,13 +9,11 @@ public class ARHitTest : MonoBehaviour {
 	public GameObject hitPrefab; //prefab we place on a hit test
     public Button spawnButton;
     public Button restartButton;
-    public Button hitButton;
-    public Slider forceSlider;
-    public Text hitForceLabel;
     public Text strokeCountText;
     public Text boundsText;
     public Text winText;
     public Text helpText;
+    public Text hitPowerText;
 
     private UnityARAnchorManager unityARAnchorManager;
     private List<GameObject> spawnedObjects = new List<GameObject>(); //array used to keep track of spawned objects
@@ -87,26 +85,16 @@ public class ARHitTest : MonoBehaviour {
 		return false;
 	}
     
-    // Testing only
+    // Editor use only
     public void SpawnStatic()
     {
         spawnedObjects.Add(Instantiate(hitPrefab, new Vector3(0, 0, 0), Quaternion.identity));
         StartGame();
     }
 
-	// Fixed Update is called once per frame
-	void FixedUpdate () {
-		if (Input.GetMouseButtonDown(0)) { //this works with touch as well as with a mouse
-            //RemoveObject (Input.mousePosition); 
-		}
-    }
-
     void StartGame()
     {
         spawnButton.gameObject.SetActive(false);
-        //hitButton.gameObject.SetActive(true);
-        //forceSlider.gameObject.SetActive(true);
-        //hitForceLabel.gameObject.SetActive(true);
     }
 
     public void AddStrokes()
@@ -117,6 +105,7 @@ public class ARHitTest : MonoBehaviour {
 
     public void WinGame()
     {
+        restartButton.gameObject.GetComponent<Text>().text = "Play Again";
         winText.gameObject.SetActive(true);
         EndGame();
     }
@@ -124,10 +113,6 @@ public class ARHitTest : MonoBehaviour {
     public void EndGame()
     {
         restartButton.gameObject.SetActive(true);
-        //hitButton.gameObject.SetActive(false);
-        //forceSlider.gameObject.SetActive(false);
-        //hitForceLabel.gameObject.SetActive(false);
-
     }
 
     public void RemoveCourse()
@@ -141,6 +126,7 @@ public class ARHitTest : MonoBehaviour {
 
     public void SetOutOfBounds()
     {
+        restartButton.gameObject.GetComponent<Text>().text = "Restart";
         boundsText.gameObject.SetActive(true);
         EndGame();
     }
@@ -155,21 +141,8 @@ public class ARHitTest : MonoBehaviour {
         boundsText.gameObject.SetActive(false);
         strokeCount = 0;
         strokeCountText.text = "";
+        hitPowerText.text = "";
         spawnButton.gameObject.SetActive(true);
         restartButton.gameObject.SetActive(false);
-        //hitButton.gameObject.SetActive(false);
-        //forceSlider.value = 0;
-        //forceSlider.gameObject.SetActive(false);
-        //hitForceLabel.gameObject.SetActive(false);
     }
-
-    public void RemoveObject(Vector2 point) {
-		RaycastHit hit;
-		if (Physics.Raycast (ARCamera.ScreenPointToRay (point), out hit)) {
-			GameObject item = hit.collider.transform.parent.gameObject;
-			if (spawnedObjects.Remove (item)) {
-				Destroy(item);
-			}
-		}
-	}
 }

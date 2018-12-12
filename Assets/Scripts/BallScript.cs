@@ -5,56 +5,39 @@ using UnityEngine.UI;
 
 public class BallScript : MonoBehaviour {
 
+    // define the game objects
     GameObject ball;
+    GameObject aimingChevrons;
     public Camera ARCamera;
-    float hitForce;
-    //Slider slider;
+
     public int maxForce;
-    GameObject chevrons;
-    public float aimDisplayThreshold;
-    Vector3 velocity;
-    Text helpText;
-    bool helpPlayer;
-    string helpPhase;
     Text hitPowerText;
+
+    bool isHelpEnabled;
+    string helpPhase;
+    Text helpText;
+
 
     // touch input
     public Vector2 startPos;
     public Vector2 direction;
 
-    Text m_Text;
-    string message;
-
 
     public void OnEnable()
     {
         ball = GameObject.FindGameObjectWithTag("ball");
-        if (ball.GetComponent<Rigidbody>())
-        {
-            velocity = ball.GetComponent<Rigidbody>().velocity;
-        }
-        else
-        {
-            Debug.Log("No Rigidbody attached to ball: ");
-        }
-        chevrons = GameObject.FindGameObjectWithTag("chevrons");
+        aimingChevrons = GameObject.FindGameObjectWithTag("chevrons");
         ARCamera = Camera.main;
-        m_Text = GameObject.FindGameObjectWithTag("touch").GetComponent<Text>();
         helpText = GameObject.FindGameObjectWithTag("help").GetComponent<Text>();
         hitPowerText = GameObject.FindGameObjectWithTag("hitPower").GetComponent<Text>();
-        helpPlayer = true;
+        isHelpEnabled = true;
         helpPhase = "aim";
     }
 
     public void Update()
     {
-        // move the aiming chevrons with the ball
-        chevrons.transform.eulerAngles = new Vector3(-90, 0, ARCamera.transform.eulerAngles.y - 180);
-
         // track touch input
-        m_Text.text = "Touch: " + message + " in direction" + direction;
-
-        // track a single touch as a direction control
+        // track a single touch as swing power control
         if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
@@ -63,41 +46,50 @@ public class BallScript : MonoBehaviour {
             switch (touch.phase)
             {
                 case TouchPhase.Began:
-                    // record initial touch position
+                    // record initial touch position and display the aiming chevrons
                     startPos = touch.position;
-                    message = "Begun ";
                     helpText.text = "";
-                    chevrons.gameObject.SetActive(true);
+                    aimingChevrons.gameObject.SetActive(true);
                     break;
 
                 case TouchPhase.Moved:
-                    // determine direction by comparing position to startPos
+                    // determine direction of touch movement by comparing position to startPos
                     direction = touch.position - startPos;
-                    hitPowerText.text = "Hit Power: " + (direction.y / Screen.height);
-                    Debug.Log("Hit Power: " + (direction.y / Screen.height));
-                    message = "Moving ";
-                    helpText.text = "Drag your finger up to set the swing power. \n Release to hit the ball...";
-                    helpPhase = "release";
+
+                    // hit power is the amount of touch movement in relation to the height of the 
+                    // screen. Displayed as percent rounded to one decimal place (e.g. 50.0)
+                    hitPowerText.text = "Hit Power: " + (direction.y / Screen.height * 100).ToString("F1");
+                    if (isHelpEnabled)
+                    {
+                        helpText.text = "Drag your finger up to set the swing power. \n Release to hit the ball...";
+                    }
+                    helpPhase = "release"; // placeholder phase, prevents swing phase text from being displayed
                     break;
 
                 case TouchPhase.Ended:
-                    // report that the touch has ended
-                    message = "Ending ";
-                    chevrons.gameObject.SetActive(false);
+                    // hide the aiming chevrons and hit the ball
+                    aimingChevrons.gameObject.SetActive(false);
                     HitBall();
                     helpText.text = "";
                     hitPowerText.text = "";
-                    helpPlayer = false;
+                    isHelpEnabled = false;
                     break;
             }
+
+            // move the aiming chevrons with the camera
+            aimingChevrons.transform.eulerAngles = new Vector3(-90, 0, ARCamera.transform.eulerAngles.y - 180);
         }
 
-        if (helpPlayer)
+        // if help is enabled, text is displayed to guide the player through the swing process
+        if (isHelpEnabled)
         {
             switch (helpPhase) {
             	case "aim":
+                    // compare the player's position relative to the ball
             		Vector3 difference = ball.transform.position - ARCamera.transform.position;
-            		if (difference.x < 0)
+                    
+                    // difference in x axis is negative if the player is in front of the ball
+                    if (difference.x < 0)
             		{
                 		helpText.text = "Stand behind the ball...";
             		} else {
@@ -112,49 +104,19 @@ public class BallScript : MonoBehaviour {
         }
     }
 
-    public void FixedUpdate()
-    { 
-        // track the velocity of the ball
-        if (velocity.x > 0 || velocity.y > 0 || velocity.z > 0)
-        {
-        	Debug.Log("Ball velocity: " + velocity);
-        }
-            
-        // show or hide the chevrons based on the velocity of the ball
-        //if (Mathf.Abs(velocity.x) <= aimDisplayThreshold && Mathf.Abs(velocity.z) <= aimDisplayThreshold)
-        //{
-        //    chevrons.gameObject.SetActive(true);
-        //} 
-        //else
-        //{
-        //    chevrons.gameObject.SetActive(false);
-        //}         
-    }
-
     public void HitBall ()
     {
-        // define the game objects
-        //ARCamera = Camera.main;
-        //slider = Object.FindObjectOfType<Slider>();
-        //ball = GameObject.FindGameObjectWithTag("ball");
-        //chevrons = GameObject.FindGameObjectWithTag("chevrons");
-
+        // define the hit angle based on where the camera is pointing
         Vector3 hitAngle = ARCamera.transform.forward;
-        //Debug.Log("hitAngle: "+ hitAngle);
 
-        //hitForce = slider.value;
-        hitForce = direction.y / Screen.height;
-        //Debug.Log("hitForce: " + hitForce);
+        // define the force of the hit based on touch position
+        float hitForce = direction.y / Screen.height;
 
+        // hit vector = angle * percent of max force based on touch position
         Vector3 force = hitAngle * hitForce * maxForce;
-        //Debug.Log("ball: " + ball);
         ball.GetComponent<Rigidbody>().AddForce(force);
-        Debug.Log("Force: " + force);
-        GameObject.FindGameObjectWithTag("gameManager").GetComponent<ARHitTest>().AddStrokes();
-    }
 
-    void HelpPlayer()
-    {
-        
+        // add stroke to total stroke count
+        GameObject.FindGameObjectWithTag("gameManager").GetComponent<ARHitTest>().AddStrokes();
     }
 }
