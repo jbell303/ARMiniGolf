@@ -57,6 +57,7 @@ GameObject:
   - component: {fileID: 33422637016662924}
   - component: {fileID: 23379707764738454}
   - component: {fileID: 64774481797767248}
+  - component: {fileID: 54402529563732878}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -129,6 +130,7 @@ GameObject:
   - component: {fileID: 33872255194961610}
   - component: {fileID: 23859117211271794}
   - component: {fileID: 64474870919039888}
+  - component: {fileID: 54488249655198348}
   m_Layer: 0
   m_Name: Circle_000
   m_TagString: Untagged
@@ -696,6 +698,36 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1360772231377700}
   m_Mesh: {fileID: 4300008, guid: 8273194d5f6341347aeda80d00b94a6c, type: 3}
+--- !u!54 &54402529563732878
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1089200987369584}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!54 &54488249655198348
+Rigidbody:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1360772231377700}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!54 &54695352505631004
 Rigidbody:
   m_ObjectHideFlags: 1
@@ -860,7 +892,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ARCamera: {fileID: 0}
   maxForce: 1000
-  aimDisplayThreshold: 0.1
   startPos: {x: 0, y: 0}
   direction: {x: 0, y: 0}
 --- !u!135 &135037341823547826

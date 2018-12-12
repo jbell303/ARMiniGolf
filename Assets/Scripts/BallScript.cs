@@ -26,6 +26,7 @@ public class BallScript : MonoBehaviour {
     public void OnEnable()
     {
         ball = GameObject.FindGameObjectWithTag("ball");
+        ball.GetComponent<Rigidbody>().collisionDetectionMode = CollisionDetectionMode.ContinuousDynamic;
         aimingChevrons = GameObject.FindGameObjectWithTag("chevrons");
         ARCamera = Camera.main;
         helpText = GameObject.FindGameObjectWithTag("help").GetComponent<Text>();
@@ -107,8 +108,7 @@ public class BallScript : MonoBehaviour {
     public void HitBall ()
     {
         // define the hit angle based on where the camera is pointing
-        //Vector3 hitAngle = ARCamera.transform.forward;
-        Vector3 hitAngle = new Vector3(0, ARCamera.transform.eulerAngles.y - 180, 0);
+        Vector3 hitAngle = ARCamera.transform.forward;
 
         // define the force of the hit based on touch position
         float hitForce = direction.y / Screen.height;
