@@ -76,10 +76,10 @@ public class BallScript : MonoBehaviour {
                     isHelpEnabled = false;
                     break;
             }
-
-            // move the aiming chevrons with the camera
-            aimingChevrons.transform.eulerAngles = new Vector3(-90, 0, ARCamera.transform.eulerAngles.y - 180);
         }
+
+        // move the aiming chevrons with the camera
+            aimingChevrons.transform.eulerAngles = new Vector3(-90, 0, ARCamera.transform.eulerAngles.y - 180);
 
         // if help is enabled, text is displayed to guide the player through the swing process
         if (isHelpEnabled)

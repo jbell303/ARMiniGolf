@@ -37,7 +37,7 @@ public class ARHitTest : MonoBehaviour {
             }
             else
             {
-                helpText.text = "Move your phone to a flat, well lit surface.";
+                helpText.text = "Aim your phone at a flat, well lit surface.";
                 spawnButton.gameObject.SetActive(false);
             }
         }
@@ -106,6 +106,11 @@ public class ARHitTest : MonoBehaviour {
     public void WinGame()
     {
         restartButton.gameObject.GetComponentInChildren<Text>().text = "Play Again";
+        if (strokeCount == 1) {
+        	winText.text = "Hole in One!!!";
+        } else {
+        	winText.text = "You Win!";
+        }
         winText.gameObject.SetActive(true);
         EndGame();
     }
