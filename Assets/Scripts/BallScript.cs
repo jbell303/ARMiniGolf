@@ -63,7 +63,7 @@ public class BallScript : MonoBehaviour {
                     hitPowerText.text = "Hit Power: " + (direction.y / Screen.height * 100).ToString("F1");
                     if (isHelpEnabled)
                     {
-                        helpText.text = "Drag your finger up to set the swing power. \n Release to hit the ball...";
+                        helpText.text = "Drag your finger back to set the swing power. \n Release to hit the ball...";
                     }
                     helpPhase = "release"; // placeholder phase, prevents swing phase text from being displayed
                     break;
