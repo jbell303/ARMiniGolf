@@ -23,7 +23,7 @@ Run the app. Accept the camera usage request and aim your camera at a flat, well
 in the game as a guide to help the user find a suitable playing surface. This game can be played inside or outdoors. Follow the on-screen
 play instructions to play the game. The hit direction is controlled by the camera. Purple chevrons should appear to assist with aiming.
 Stroke power is controlled by touching and dragging up the screen. Release touch to hit the ball. The game will end if the ball goes out of
-bounds or in the hole. See if you can get a hole-in-one!
+bounds or in the hole. **See if you can get a hole-in-one!**
 
 ## Limitations
 The graphics are very basic and there is no sound.
