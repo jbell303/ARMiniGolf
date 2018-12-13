@@ -55,7 +55,8 @@ public class BallScript : MonoBehaviour {
 
                 case TouchPhase.Moved:
                     // determine direction of touch movement by comparing position to startPos
-                    direction = touch.position - startPos;
+                    //direction = touch.position - startPos;
+                    direction = startPos - touch.position;
 
                     // hit power is the amount of touch movement in relation to the height of the 
                     // screen. Displayed as percent rounded to one decimal place (e.g. 50.0)

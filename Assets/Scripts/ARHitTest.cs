@@ -37,7 +37,14 @@ public class ARHitTest : MonoBehaviour {
             }
             else
             {
-                helpText.text = "Aim your phone at a flat, well lit surface.";
+                // prompt the user to move the phone a little after 10 seconds
+                if (Time.time < 10)
+                {
+                    helpText.text = "Aim your phone at a flat, well lit surface.";
+                } else
+                {
+                    helpText.text = "Move your phone around a little.";
+                }
                 spawnButton.gameObject.SetActive(false);
             }
         }
